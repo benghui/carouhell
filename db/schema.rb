@@ -17,25 +17,33 @@ ActiveRecord::Schema.define(version: 2018_10_26_065620) do
 
   create_table "categories", force: :cascade do |t|
     t.string "product_category"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
-    t.datetime "modified_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "user_comment"
+    t.bigint "user_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
-    t.datetime "modified_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.integer "price"
-    t.integer "seller_id"
-    t.integer "buyer_id"
+    t.bigint "seller_id"
+    t.bigint "buyer_id"
     t.datetime "created_at", null: false
-    t.datetime "modified_at", null: false
+    t.datetime "updated_at", null: false
     t.string "image_url"
     t.text "description"
+    t.index ["buyer_id"], name: "index_products_on_buyer_id"
+    t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,4 +58,6 @@ ActiveRecord::Schema.define(version: 2018_10_26_065620) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "users", column: "buyer_id"
+  add_foreign_key "products", "users", column: "seller_id"
 end

@@ -3,10 +3,9 @@ class Products < ActiveRecord::Migration[5.2]
     create_table :products do |t|
       t.string :product_name
       t.integer :price
-      t.integer :seller_id
-      t.integer :buyer_id
-      t.datetime :created_at, null: false
-      t.datetime :modified_at, null: false
+      t.references :seller, index: true, foreign_key: {to_table: :users}
+      t.references :buyer, index: true, foreign_key: {to_table: :users}
+      t.timestamps
       t.string :image_url
       t.text :description
     end
