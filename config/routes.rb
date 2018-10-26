@@ -14,5 +14,5 @@ Rails.application.routes.draw do
     resources :categories
   end
 
-  root to: "home#index"
+  root to: "products#index"
 end
