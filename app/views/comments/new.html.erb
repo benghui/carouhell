@@ -1,0 +1,14 @@
+# check if user_product_comments_path is correct
+<%= form_with model: @comment, url: user_product_comments_path, local: true do |form| %>
+
+	<p>
+		<h3>Post a user comment</h3>
+		<%= form.label :usercomment %><br>
+		<%= form.text_field :usercomment %>
+    </p>
+
+		<%= form.submit(value:"Add comment") %>
+
+<% end %>
+
+<%= link_to 'Back', products_path %>
