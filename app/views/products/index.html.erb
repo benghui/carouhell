@@ -1,25 +1,61 @@
+</br>
+
+</br>
+
+</br>
 
 <div class = "container">
-		<h1>CarouHell</h1>
 
-		<h2> These are the products</h2>
+
+	<h2> These are the products</h2>
 
 
 		<div class = "container">
-		<div class="row">
-		<% @products.each do |product| %>
-    <div class="col-sm-4">
-      <div class="panel panel-primary">
-        <div class="panel-heading"><%= product.product_name %></div>
-        <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">$<%= product.price %></div>
-      </div>
-     </div>
-  		<%end %>
-    </div>
-  </div>
 
 
+			<div class="card-deck">
 
+				<% @products.each do |product| %>
+
+			  <div class="card" style="width: 18rem;">
+					  <img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
+
+				<div class="card-body">
+						    <h5 class="card-title"><%= product.product_name %></h5>
+						    <h5 class="card-title">$<%= product.price %></h5>
+						    <p class="card-text">TrueDepth camera. Exceptional materials. Intelligent A12 Bonic. 12MP rear camera. Advanced Face ID. Liquid retina.</p>
+
+				</div>
+
+					  <ul class="list-group list-group-flush">
+					    <li class="list-group-item">Seller: Travis</li>
+					  </ul>
+
+				<div class="card-body">
+					    <a href="#" class="card-link">DETAILS</a>
+
+					    <a href="#" class="card-link">BUY</a>
+			  </div>
+
+		</div>
+
+			  <%end %>
+
+			</div>
+
+		</div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
