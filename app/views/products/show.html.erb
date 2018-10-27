@@ -1,61 +1,37 @@
 <div class = "container">
-
 	</br>
 	</br>
 	</br>
-
-
 	<div class="container">
-        	<div class="row">
+        <div class="row">
+			<div class="col-xs-4 item-photo">
+			   	<img style="max-width:100%;" src="https://store.storeimages.cdn-apple.com/8755/as-images.apple.com/is/image/AppleInc/aos/published/images/m/bp/mbp13touch/space/mbp13touch-space-select-201807_GEO_SG?wid=452&hei=420&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1531167641828" />
+            </div>
 
-               <div class="col-xs-4 item-photo">
-                    <img style="max-width:100%;" src="https://store.storeimages.cdn-apple.com/8755/as-images.apple.com/is/image/AppleInc/aos/published/images/m/bp/mbp13touch/space/mbp13touch-space-select-201807_GEO_SG?wid=452&hei=420&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1531167641828" />
-                </div>
-
-                <div class="col-xs-5" style="border:0px solid gray">
+            <div class="col-xs-5" style="border:0px solid gray">
                 	</br>
                 	</br>
-                    <!-- Product Name -->
-
-
-                    <!-- Detalles especificos del producto -->
-
-
-                    <div class="card-body text-primary" style="max-width: 30rem;">
-						  <div class="card-header bg-transparent border-primary">
-
+                <div class="card-body text-primary" style="max-width: 30rem;">
+					<div class="card-header bg-transparent border-primary">
 						  	<h3><%= @product.product_name %></h3>
-
-						  </div>
-						  <div class="card-body text-primary">
-
-						    <h8 style="color:#337ab7">Seller: </h8>
-                    		<h5><p><a href="#">Travis</a><small style="color:#337ab7"></small></p></h5>
-                    		<h8 style="color:#337ab7">Price: </h8>
-
-                    		<h4 style="margin-top:0px; color:#2E64FE ">SGD$<%= @product.price %></h4>
-
-
-						  </div>
-							  <div class="card-footer bg-transparent border-primary">
-							  <p class="card-text">TrueDepth camera. Exceptional materials. Intelligent A12 Bonic. 12MP rear camera. Advanced Face ID. Liquid retina.</p>
-
-							  <div class="section" style="padding-bottom:20px;">
-                       <button type="button" class="btn btn-primary">BUY</button>
-
-                    </div>
-							</div>
-
-
 					</div>
 
- <!-- Botones de compra -->
-
-                </div>
-
-
+					<div class="card-body text-primary">
+						<h8 style="color:#337ab7">Seller: </h8>
+                    	<h5><p><a href="#">Travis</a><small style="color:#337ab7"></small></p></h5>
+                    	<h8 style="color:#337ab7">Price: </h8>
+                    	<h4 style="margin-top:0px; color:#2E64FE ">SGD$<%= @product.price %></h4>
+					</div>
+					
+					<div class="card-footer bg-transparent border-primary">
+							<p class="card-text">TrueDepth camera. Exceptional materials. Intelligent A12 Bonic. 12MP rear camera. Advanced Face ID. Liquid retina.</p>
+						<div class="section" style="padding-bottom:20px;">
+							<button type="button" class="btn btn-primary">BUY</button>
+						</div>
+					</div>
+				</div>
             </div>
+        </div>
     </div>
-
 </div>
 

@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :comments
-  has_many :products, foreign_key :seller_id
-  has_many :products, foreign_key :buyer_id
+  has_many :products, foreign_key: "seller_id"
+  has_many :products, foreign_key: "buyer_id"
 end
