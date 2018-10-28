@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(version: 2018_10_26_065620) do
 
   create_table "categories", force: :cascade do |t|
     t.string "product_category"
-    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_categories_on_product_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -38,11 +36,13 @@ ActiveRecord::Schema.define(version: 2018_10_26_065620) do
     t.integer "price"
     t.bigint "seller_id"
     t.bigint "buyer_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.text "description"
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 

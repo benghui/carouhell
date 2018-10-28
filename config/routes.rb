@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :products do
     resources :users
     resources :comments
-    resources :categories
+  end
+  resources :categories do
+    resources :products
   end
 
   root to: "products#index"

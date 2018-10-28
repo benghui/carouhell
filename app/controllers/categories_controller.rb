@@ -8,4 +8,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @product = @category.products
   end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:product_category)
+  end
 end
