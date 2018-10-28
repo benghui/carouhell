@@ -2,8 +2,8 @@
 
 	<h2>What would you like to sell</h2>
 
-	<%= form_with scope: :product, url: user_products_path, local: true do |form| %>
-		<%= form.hidden_field :seller_id, :value => @user_id %>
+	<%= form_with model: @product, url: user_products_path, local: true do |form| %>
+		<%= form.hidden_field :seller_id, value: @product.user.id %>
 		<p>
 			<%= form.label :product_name, "Product Name" %><br>
 			<%= form.text_field :product_name %>
