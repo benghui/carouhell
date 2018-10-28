@@ -1,14 +1,12 @@
 <div class = "container">
 
-	<h1>CarouHell</h1>
-
 	<h2>What would you like to sell</h2>
 
 	<%= form_with scope: :product, url: user_products_path, local: true do |form| %>
 		<%= form.hidden_field :seller_id, :value => @user_id %>
 		<p>
-			<%= form.label :product %><br>
-			<%= form.text_field :product %>
+			<%= form.label :product_name, "Product Name" %><br>
+			<%= form.text_field :product_name %>
 		</p>
 
 		<p>
@@ -22,7 +20,7 @@
 		</p>
 
 		<p>
-			<%= form.label :image_url , "Image URL"%><br>
+			<%= form.label :image_url, "Image URL" %><br>
 			<%= form.text_field :image_url  %>
 		</p>
 
