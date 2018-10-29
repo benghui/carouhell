@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
     def new
+      @product = Product.new
       @categories = Category.all
     end
 
@@ -21,10 +22,10 @@ class ProductsController < ApplicationController
   def create
 
     @product = Product.new(product_params)
-    @product.user = current_user
+    @product.seller = current_user
 
     @product.save
-    redirect_to @products
+    redirect_to @product
   end
 
   def update
@@ -39,6 +40,6 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-    params.require(:product).permit(:product_name, :price, :seller_id, :buyer_id, :category_id, :description, :image_url, :user_id)
+    params.require(:product).permit(:product_name, :price, :seller_id, :buyer_id, :category_id, :description, :image_url)
   end
 end

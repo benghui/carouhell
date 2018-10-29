@@ -16,4 +16,12 @@ class User < ApplicationRecord
   def will_save_change_to_email?
     false
   end
+
+  def seller_products
+    Product.where("seller_id = ?", self.id)
+  end
+
+  def buyer_products 
+    Product.where("buyer_id = ?", self.id)
+  end
 end
