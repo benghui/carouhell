@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   def index
     if Category.find_by_id(params[:category_id])
       @products = Product.where(category_id: params[:category_id])
+      # seller_id = @products.seller_id 
     else 
       @products = Product.all
     end 
