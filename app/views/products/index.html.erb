@@ -10,7 +10,7 @@
 
 			  	<div class="card" style="width: 18rem;">
 
-					<img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
+					<%= image_tag product.image_url %>
 
 					<div class="card-body">
 						<h5 class="card-title"><%= product.product_name %></h5>
@@ -18,7 +18,7 @@
 
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Seller: <%= product.seller.username %></li>
+						<li class="list-group-item">Seller: <%= link_to product.seller.username, user_path(product.seller_id) %></li>
 					</ul>
 
 					<div class="card-body">
