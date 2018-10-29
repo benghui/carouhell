@@ -8,12 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :products do
-    resources :users
-    resources :comments
-  end
   resources :categories do
-    resources :products
+    resources :products 
   end
 
   patch 'users/:user_id/products/:id', to: 'products#buy', as: :buy_products
