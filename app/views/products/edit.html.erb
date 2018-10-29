@@ -1,0 +1,39 @@
+<div class = "container">
+
+	<h2>Edit your product</h2>
+
+	<%= form_with model: @product, local: true do |form| %>
+
+
+		<%= form.hidden_field :seller_id, :value => @user_id %>
+
+		<p>
+			<%= form.label :product_name, "Product Name" %><br>
+			<%= form.text_field :product_name %>
+		</p>
+
+		<p>
+			<%= form.label :price %><br>
+			<%= form.text_field :price %>
+		</p>
+
+		<p>
+			<%= form.label :description %><br>
+			<%= form.text_area :description %>
+		</p>
+
+		<p>
+			<%= form.label :image_url, "Image URL" %><br>
+			<%= form.text_field :image_url  %>
+		</p>
+
+
+
+		<p>
+			<%= form.submit %>
+		</p>
+	<% end %>
+
+	<%= link_to 'Back', products_path %>
+
+</div>

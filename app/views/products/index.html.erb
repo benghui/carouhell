@@ -9,6 +9,7 @@
 				<% @products.each do |product| %>
 
 			  	<div class="card" style="width: 18rem;">
+
 					<img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
 
 					<div class="card-body">
@@ -22,8 +23,9 @@
 					</ul>
 
 					<div class="card-body">
-					<a href="#" class="card-link">DETAILS</a>
+					<%= link_to 'DETAILS', product_path(product) %> <br>
 					<a href="#" class="card-link">BUY</a>
+
 			  		</div>
 				</div>
 			  	<%end %>

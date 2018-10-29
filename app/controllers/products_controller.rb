@@ -14,8 +14,9 @@ class ProductsController < ApplicationController
       @categories = Category.all
     end
 
-#   def edit
-#   end
+  def edit
+    @product = Product.find(params[:id])
+  end
 
   def create
 
@@ -26,8 +27,12 @@ class ProductsController < ApplicationController
     redirect_to @products
   end
 
-#   def update
-#   end
+  def update
+     @product = Product.find(params[:id])
+
+    @product.update(product_params)
+    redirect_to @product
+  end
 
 #   def destroy
 #   end
