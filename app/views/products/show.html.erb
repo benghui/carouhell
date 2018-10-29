@@ -3,15 +3,15 @@
 	</br>
 	</br>
 	<div class="container">
-        <div class="row">
+    <div class="row">
 			<div class="col-xs-4 item-photo">
 
-			   	<%= image_tag(@product.image_url, :alt => "entry", :class => "col-xs-4 item-photo" :width => 250, :height => 100)%>
 
+						<img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
 
             </div>
 
-            <div class="col-xs-5" style="border:0px solid gray">
+            <div class="col-xl-5" style="border:0px solid gray">
                 	</br>
                 	</br>
                 <div class="card-body text-primary" style="max-width: 30rem;">
@@ -35,6 +35,36 @@
 				</div>
             </div>
         </div>
+
+			<div>
+
+					<div>
+
+					<%= form_with model: @comment, local: true do |form| %>
+
+			 	<p>
+			 		<%= form.label :text, "Add Comment" %></br>
+			 		<%= form.text_area :text %>
+			 	</p>
+
+			 	<p>
+			 		<%= form.submit %>
+			 	</p>
+			 <% end %>
+
+		</div>
+
+
+
+
+
+			</div>
+
+
+
+
     </div>
 </div>
+
+
 
