@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row">
+
+<% @categories.each do |category| %>
+    <div class="col-3 mt-5 mr-3 ml-3 border">
+    <%= link_to category.product_category, category_products_path(category) %>
+    </div>
+    <% end %>
+
+    </div>
+</div>
