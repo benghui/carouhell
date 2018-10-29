@@ -16,5 +16,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  patch 'users/:user_id/products/:id', to: 'products#buy', as: :buy_products
+
   root to: "products#index"
 end
