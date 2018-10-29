@@ -20,14 +20,16 @@
 					</div>
 
 					<div class="card-body text-primary">
-						<h8 style="color:#337ab7">Seller: </h8>
-                    	<h5><p><a href="#">Travis</a><small style="color:#337ab7"></small></p></h5>
-                    	<h8 style="color:#337ab7">Price: </h8>
+						<h8 style="color:#337ab7">Seller:</h8>
+                    	<h5><p><%= link_to current_user.username, user_path(current_user) %><small style="color:#337ab7"></small></p></h5>
+                    	<h8 style="color:#337ab7">Price:</h8>
                     	<h4 style="margin-top:0px; color:#2E64FE ">SGD$<%= @product.price %></h4>
+						<h8 style="color:#337ab7">Category:</h8>
+                    	<h4 style="margin-top:0px; color:#2E64FE "><%= @product.category.product_category %></h4>
 					</div>
 
 					<div class="card-footer bg-transparent border-primary">
-							<p class="card-text">TrueDepth camera. Exceptional materials. Intelligent A12 Bonic. 12MP rear camera. Advanced Face ID. Liquid retina.</p>
+							<p class="card-text"><%= @product.description %></p>
 						<div class="section" style="padding-bottom:20px;">
 							<button type="button" class="btn btn-primary">BUY</button>
 						</div>

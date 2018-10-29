@@ -10,20 +10,20 @@ class ProductsController < ApplicationController
   end
 
   def show
-     @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def new
-      @product = Product.new
-      @categories = Category.all
+    @product = Product.new
+    @categories = Category.all
   end
 
   def edit
     @product = Product.find(params[:id])
+    @categories = Category.all
   end
 
   def create
-
     @product = Product.new(product_params)
     @product.seller = current_user
 
@@ -32,7 +32,8 @@ class ProductsController < ApplicationController
   end
 
   def update
-     @product = Product.find(params[:id])
+    @product = Product.find(params[:id])
+    @product.seller = current_user
 
     @product.update(product_params)
     redirect_to @product
