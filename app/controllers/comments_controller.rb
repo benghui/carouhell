@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @comment.product
+      redirect_to user_product_path(user_id: current_user.id, id: @product.id)
     else
       redirect_to root_path
     end
@@ -32,7 +32,8 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @product = @comment.product
     @comment.update(comment_params)
-    redirect_to @product
+
+    redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
   def destroy
@@ -41,10 +42,10 @@ class CommentsController < ApplicationController
     if @comment.user = current_user
       @comment.destroy
       @product = Product.find(params[:product_id])
-      redirect_to @product
+      redirect_to user_product_path(user_id: current_user.id, id: @product.id)
     else
       @product = Product.find(params[:product_id])
-      redirect_to @product
+      redirect_to user_product_path(user_id: current_user.id, id: @product.id)
     end
   end
 
