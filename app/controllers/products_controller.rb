@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
 
-
+  before_action :authenticate_user!, :except => [ :show, :index ]
+  
   def index
     if Category.find_by_id(params[:category_id])
       @products = Product.where(category_id: params[:category_id])
