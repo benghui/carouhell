@@ -36,14 +36,14 @@
     </nav>
 
     <% if current_user == nil %>
-      <nav class="navbar nav justify-content-end sticky-top">
-        <li class="nav-link"><%= link_to 'Login', new_user_session_path %></button></li>
-        <li class="nav-link"><%= link_to 'Sign Up', new_user_registration_path %></button></li>
+      <nav class="sticky-top navbar nav justify-content-end">
+        <li class="nav-link"><%= link_to 'Login', new_user_session_path %>/li>
+        <li class="nav-link"><%= link_to 'Sign Up', new_user_registration_path %></li>
       </nav>
     <% else %>
-      <nav class="navbar nav justify-content-end sticky-top">
+      <nav class="sticky-top navbar nav justify-content-end">
         <li class="nav-item">Welcome back, <%= current_user.username %>!</li>
-        <li class="nav-link"><%= link_to 'Logout', destroy_user_session_path %></button></li>
+        <li class="nav-link"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></li>
       </nav>
     <% end %>
   
