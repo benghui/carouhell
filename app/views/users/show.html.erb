@@ -1,0 +1,30 @@
+<div class = "container">
+	<h3> Products by <%= @username %> </h3>
+		<div class = "container">
+			<div class="card-deck">
+				<% @listedproducts.each do |product| %>
+
+			  	<div class="card">
+					<%= image_tag product.image_url, :style => "height: 15rem; width: 15rem;"  %>
+			  	</div>
+			</div>
+			<%end %>
+		</div>
+</div>
+
+<br>
+<div class = "container">
+	<h3>Purchase history</h3>
+		<div class = "container">
+			<div class="card-deck">
+				<% @orderhistory.each do |product| %>
+
+			  	<div class="card" style="width: 18rem; height: 18rem;">
+
+					<%= image_tag product.image_url %>
+		
+			  	</div>
+			</div>
+			<%end %>
+		</div>
+</div>
