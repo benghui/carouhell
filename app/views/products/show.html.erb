@@ -28,11 +28,13 @@
 					<div class="card-footer bg-transparent border-primary">
 							<p class="card-text"><%= @product.description %></p>
 						<div class="section" style="padding-bottom:20px;">
-							<% if current_user.id == @product.seller.id %>
+							<% if @product.buyer_id %>
+								<h3 style="margin-top:0px; color:#2E64FE ">Item Sold</h3>
+							<% elsif current_user.id == @product.seller.id %>
 								<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path %></button>
 								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' } %></button>
 							<% else %>
-								<button type="button" class="btn btn-primary"><%#= link_to 'Buy', buy_products_path %></button> 
+								<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: @product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'} %></button> 
 							<% end %>	
 						</div>
 					</div>
