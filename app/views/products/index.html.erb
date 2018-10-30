@@ -22,7 +22,7 @@
 					</ul>
 
 					<div class="card-body">
-					<%= link_to 'DETAILS', product_path(product) %> <br>
+					<%= link_to 'DETAILS', user_product_path(user_id: current_user.id, id: product.id) %> <br>
 					<a href="#" class="card-link">BUY</a>
 
 			  		</div>
@@ -31,16 +31,3 @@
 			</div>
 		</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
