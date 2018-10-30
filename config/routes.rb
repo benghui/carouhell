@@ -4,19 +4,14 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :products do
+        patch :buy
       resources :comments
     end
   end
 
-  resources :products do
-    resources :users
-    resources :comments
+  resources :categories, only: [:index] do
+    resources :products 
   end
-  resources :categories do
-    resources :products
-  end
-
-  patch 'users/:user_id/products/:id', to: 'products#buy', as: :buy_products
 
   root to: "products#index"
 end

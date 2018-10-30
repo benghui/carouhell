@@ -10,7 +10,7 @@
 
 			  	<div class="card" style="width: 18rem;">
 
-					<img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
+					<%= image_tag product.image_url %>
 
 					<div class="card-body">
 						<h5 class="card-title"><%= product.product_name %></h5>
@@ -18,29 +18,22 @@
 
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Seller: <%= product.seller.username %></li>
+						<li class="list-group-item">Seller: <%= link_to product.seller.username, user_path(product.seller_id) %></li>
 					</ul>
 
-					<div class="card-body">
-					<%= link_to 'DETAILS', product_path(product) %> <br>
-					<a href="#" class="card-link">BUY</a>
-
+					<div class="card-footer">
+					<%= link_to 'DETAILS', user_product_path(user_id: current_user.id, id: product.id) %> <br>
+					<% if product.buyer_id %>
+						<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
+					<% elsif current_user.id == product.seller.id %>
+						<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path(user_id: current_user.id, id: product.id) %></button>
+						<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+					<% else %>
+						<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'} %></button> 
+					<% end %>			
 			  		</div>
 				</div>
 			  	<%end %>
 			</div>
 		</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

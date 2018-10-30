@@ -5,7 +5,7 @@
 	<div class="container">
         <div class="row">
 			<div class="col-xs-4 item-photo">
-			   	<%= image_tag(@product.image_url, :alt => "entry")%>
+			   	<%= image_tag(@product.image_url, :alt => "entry") %>
             </div>
 
             <div class="col-xs-5" style="border:0px solid gray">
@@ -28,21 +28,22 @@
 					<div class="card-footer bg-transparent border-primary">
 							<p class="card-text"><%= @product.description %></p>
 						<div class="section" style="padding-bottom:20px;">
-							<% if current_user.id == @product.seller.id %>
-								<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_product_path %></button>
+							<% if @product.buyer_id %>
+								<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
+							<% elsif current_user.id == @product.seller.id %>
+								<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path %></button>
 								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' } %></button>
 							<% else %>
-								<button type="button" class="btn btn-primary"><%#= link_to 'Buy', buy_products_path %>Buy</button> 
+								<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: @product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'} %></button> 
 							<% end %>	
 						</div>
 					</div>
 				</div>
             </div>
         </div>
+		<div class = "container">
 
-			<div>
-
-			<%= form_with scope: :comment ,url: user_product_comments_path(user_id: current_user.id,product_id: @product.id), local: true do |form| %>
+			<%= form_with scope: :comment, url: user_product_comments_path(user_id: current_user.id, product_id: @product.id), local: true do |form| %>
 
 			 	<p>
 			 		<%= form.label :user_comment, "Add Comment" %></br>
@@ -52,36 +53,30 @@
 			 	<p>
 			 		<%= form.submit %>
 			 	</p>
-			 <% end %>
-
-
-						<div class ="table-responsive-sm">
-
-								<table class="table table-sm">
-									  <thead>
-									    <tr>
-									      <th scope="col">Username</th>
-									      <th scope="col">Comment</th>
-									      <th scope="col">Edit/Delete</th>
-									    </tr>
-									  </thead>
-									  <tbody>
-									  	<% @comments.each do |comment| %>
-									    <tr>
-									      <td><%= current_user.username %></td>
-									      <td><%= comment.user_comment %></td>
-									      <td><%= link_to 'Edit', edit_product_path(comment) %><td>
-									    </tr>
-											<% end %>
-									  </tbody>
-							</table>
-
-
-
-					</div>
-
-
-    </div>
+			<% end %>
+				<div class ="table-responsive-sm">
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th scope="col">Username</th>
+								<th scope="col">Comment</th>
+								<th scope="col">Edit</th>
+								<th scope="col">Delete</th>
+							</tr>
+						</thead>
+						<tbody>
+						<% @comments.each do |comment| %>
+						<tr>
+							<td><%= current_user.username %></td>
+							<td><%= comment.user_comment %></td>
+							<td><%= link_to 'Edit', edit_user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id)%></td>
+							<td><%= link_to 'Delete', user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
+						</tr>
+						<% end %>
+						</tbody>
+					</table>
+				</div>
+    	</div>
 </div>
 
 
