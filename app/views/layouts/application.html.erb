@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Carouhell</title>
+    <title>CarouHell</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,41 +10,44 @@
   </head>
 
   <body>
-  	<nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-primary" style="background-color: #e3f2fd;">
-      <a class="navbar-brand" href="/users/:user_id/products">CarouHell</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <a class="navbar-brand" href="http://carouhell.tumblr.com/">CarouHell</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="new_product_path">Sell</a>
+        </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="category_products">Categories</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-            </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Find products" aria-label="Search">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Find products" aria-label="Search">
+            <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
     </nav>
+
+    <% if current_user == nil %>
+      <nav class="navbar nav justify-content-end sticky-top">
+        <li class="nav-link"><%= link_to 'Login', new_user_session_path %></button></li>
+        <li class="nav-link"><%= link_to 'Sign Up', new_user_registration_path %></button></li>
+      </nav>
+    <% else %>
+      <nav class="navbar nav justify-content-end sticky-top">
+        <li class="nav-item">Welcome back, <%= current_user.username %>!</li>
+        <li class="nav-link"><%= link_to 'Logout', destroy_user_session_path %></button></li>
+      </nav>
+    <% end %>
+  
+
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
