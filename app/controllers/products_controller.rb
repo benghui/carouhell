@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
     @product.seller = current_user
 
     @product.save
-    redirect_to @product
+    redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
   def update
@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     @product.seller = current_user
 
     @product.update(product_params)
-    redirect_to @product
+    redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
   def destroy
