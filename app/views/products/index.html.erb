@@ -24,7 +24,7 @@
 					<div class="card-footer">
 					<%= link_to 'DETAILS', user_product_path(user_id: current_user.id, id: product.id) %> <br>
 					<% if product.buyer_id %>
-						<h3 style="margin-top:0px; color:#2E64FE ">Item Sold</h3>
+						<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
 					<% elsif current_user.id == product.seller.id %>
 						<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path(user_id: current_user.id, id: product.id) %></button>
 						<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), method: :delete, data: { confirm: 'Are you sure?' } %></button>

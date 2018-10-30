@@ -29,7 +29,7 @@
 							<p class="card-text"><%= @product.description %></p>
 						<div class="section" style="padding-bottom:20px;">
 							<% if @product.buyer_id %>
-								<h3 style="margin-top:0px; color:#2E64FE ">Item Sold</h3>
+								<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
 							<% elsif current_user.id == @product.seller.id %>
 								<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path %></button>
 								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' } %></button>
@@ -70,7 +70,7 @@
 							<td><%= current_user.username %></td>
 							<td><%= comment.user_comment %></td>
 							<td><%= link_to 'Edit', edit_user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id)%></td>
-<td><%= link_to 'Delete', user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
+							<td><%= link_to 'Delete', user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
 						</tr>
 						<% end %>
 						</tbody>
