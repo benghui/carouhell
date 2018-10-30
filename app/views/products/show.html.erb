@@ -60,18 +60,20 @@
 							<tr>
 								<th scope="col">Username</th>
 								<th scope="col">Comment</th>
-								<th scope="col">Edit/Delete</th>
-							</tr>			    
-						</thead>			
+								<th scope="col">Edit</th>
+								<th scope="col">Delete</th>
+							</tr>
+						</thead>
 						<tbody>
 						<% @comments.each do |comment| %>
 						<tr>
 							<td><%= current_user.username %></td>
 							<td><%= comment.user_comment %></td>
-							<td><%= link_to 'Edit', edit_user_product_path(comment) %><td>
+							<td><%= link_to 'Edit', edit_user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id)%></td>
+<td><%= link_to 'Delete', user_product_comment_path(user_id: current_user.id, product_id: @product.id, id: comment.id), method: :delete, data: { confirm: 'Are you sure?' }%></td>
 						</tr>
 						<% end %>
-						</tbody>			  
+						</tbody>
 					</table>
 				</div>
     	</div>
