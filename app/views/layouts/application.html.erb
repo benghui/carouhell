@@ -18,14 +18,25 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-
-        <li class="nav-item">
-          <a class="nav-link" href="new_product_path">Sell</a>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+          
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% Category.all.each do |category| %>
+              <%= link_to category.product_category, category_products_path(category), :class => "dropdown-item" %>
+            <% end %>              
+          </div>
         </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="category_products">Categories</a>
-          </li>
+        <% if current_user == nil %>
+          <li class="nav-item"><%= link_to 'Login', new_user_session_path, :class => "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, :class => "nav-link" %></li>
+        <% else %>
+          <li class="nav-item"><a class="nav-link" href="new_user_product_path">Sell</a></li> 
+          <li class="nav-item"><%= link_to 'Logout', destroy_user_session_url, method: :delete, :class => "nav-link" %></li>
+          <span class="navbar-text" style="color:#005ff9;">Welcome back, <%= current_user.username %>!</span>
+        <% end %>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -35,21 +46,9 @@
       </div>
     </nav>
 
-    <% if current_user == nil %>
-      <nav class="sticky-top navbar nav justify-content-end">
-        <li class="nav-link"><%= link_to 'Login', new_user_session_path %>/li>
-        <li class="nav-link"><%= link_to 'Sign Up', new_user_registration_path %></li>
-      </nav>
-    <% else %>
-      <nav class="sticky-top navbar nav justify-content-end">
-        <li class="nav-item">Welcome back, <%= current_user.username %>!</li>
-        <li class="nav-link"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></li>
-      </nav>
-    <% end %>
-  
-
-    <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <%= yield %>
   </body>
 </html>
