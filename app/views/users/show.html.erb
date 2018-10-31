@@ -27,10 +27,10 @@
 								<% if product.buyer_id %>
 									<h5 style="margin-top:0px; color:#FF0000 ">Item Sold</h5>
 								<% elsif current_user.id == product.seller.id %>
-									<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path(user_id: current_user.id, id: product.id) %></button>
-									<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+									<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' %></button>
+									<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => 'color:#FFFFFF' %></button>
 								<% else %>
-									<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'} %></button> 
+									<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'}, :style => 'color:#FFFFFF' %></button> 
 								<% end %>
 							</div>
 						</div>
@@ -46,30 +46,29 @@
 	<div class = "container">
 		<div class ="row">
 			<h4>Purchase history</h4>
-				<div class="w-100"></div>
-					<% @orderhistory.each do |product| %>
-						<div class="col-xs-4 item-photo">
-							<%= image_tag product.image_url, :style => "height: 15rem; width: 15rem;" %>
-						</div>
+				<% @orderhistory.each do |product| %>
+					<div class="col-xs-4 item-photo">
+						<%= image_tag product.image_url, :style => "height: 15rem; width: 15rem;" %>
+					</div>
 
-						<div class="card-body text-primary col-3">
-							<div class="card-header bg-transparent border-primary">
-								<h3><%= product.product_name %></h3>
-							</div>
-						
-							<div class="card-body text-primary" style="max-width: 200rem;">
-								<h8 style="color:#337ab7">Price:</h8>
-								<h6 style="margin-top:0px; color:#2E64FE ">SGD$<%= product.price %></h4>
-								<h8 style="color:#337ab7">Category:</h8>
-								<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
-							</div>
+					<div class="card-body text-primary col-3">
+						<div class="card-header bg-transparent border-primary">
+							<h3><%= product.product_name %></h3>
+						</div>
 					
-							<div class="card-footer bg-transparent border-primary">
-									<p class="card-text"><%= product.description %></p>
-								<div class="section" style="padding-bottom:20px;"></div>
-							</div>
-						</div>	
-					<% end %>
+						<div class="card-body text-primary" style="max-width: 200rem;">
+							<h8 style="color:#337ab7">Price:</h8>
+							<h6 style="margin-top:0px; color:#2E64FE ">SGD$<%= product.price %></h4>
+							<h8 style="color:#337ab7">Category:</h8>
+							<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
+						</div>
+				
+						<div class="card-footer bg-transparent border-primary">
+								<p class="card-text"><%= product.description %></p>
+							<div class="section" style="padding-bottom:20px;"></div>
+						</div>
+					</div>	
+				<% end %>
 		</div>
 	</div>
 <% end %>
