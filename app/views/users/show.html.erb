@@ -1,74 +1,72 @@
-<div class = "container">
+<div class = "container-fluid">
+	<h4> Products by <%= @user.username %></h4>
 	<div class ="row">
 		<div class="card-deck">
-			<h4> Products by <%= @user.username %></h4>
-				<div class="w-100"></div>
-				<% @listedproducts.each do |product| %>
+			<% @listedproducts.each do |product| %>
+				<div class ="col-sm-4" >
+					<div class="card" style="width: 27rem;">
+						<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
 
-					<div class="col-xs-4 item-photo">
-						<%= image_tag product.image_url, :style => "height: 15rem; width: 15rem;" %>
-					</div>
-					
-					<div class="card-body text-primary col-3">
-						<div class="card-header bg-transparent border-primary">
-							<h3><%= product.product_name %></h3>
-						</div>
-					
-						<div class="card-body text-primary" style="max-width: 200rem;">
-							<h8 style="color:#337ab7">Price:</h8>
-							<h6 style="margin-top:0px; color:#2E64FE ">SGD$<%= product.price %></h4>
-							<h8 style="color:#337ab7">Category:</h8>
-							<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
+						<div class="card-body">
+							<h5 class="card-title" style ="text-align: center"><%= product.product_name %></h5>
+							<h5 class="card-title" style ="text-align: center">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h5>
+							<h5 class="card-title" style ="text-align: center"><%= product.category.product_category %></h5>
 						</div>
 
-						<div class="card-footer bg-transparent border-primary">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
 								<p class="card-text"><%= product.description %></p>
-							<div class="section" style="padding-bottom:20px;">
-								<% if product.buyer_id %>
-									<h5 style="margin-top:0px; color:#FF0000 ">Item Sold</h5>
-								<% elsif current_user.id == product.seller.id %>
-									<button type="button" class="btn btn-primary"><%= link_to 'Edit', edit_user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' %></button>
-									<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), method: :delete, data: { confirm: 'Are you sure?' }, :style => 'color:#FFFFFF' %></button>
-								<% else %>
-									<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'}, :style => 'color:#FFFFFF' %></button> 
-								<% end %>
-							</div>
+							</li>
+						</ul>
+
+						<div class="card-footer">
+							<% if product.buyer_id %>
+								<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
+							<% elsif current_user.id == product.seller.id %>
+								<button type="button" class="btn btn-primary"><%= link_to 'Edit',  edit_user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' %></button>
+								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' , method: :delete, data: { confirm: 'Are you sure?' } %></button>
+							<% else %>
+								<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'}, :style => 'color:#FFFFFF' %></button>
+							<% end %>  
 						</div>
 					</div>
-				<% end %>
+				</div>	
+			<% end %>
 		</div>
-	</div>
-	<hr>	
+	</div>	
 </div>
-
+<hr>
 <br>
 <% if @user.id == current_user.id %>
-	<div class = "container">
+	<div class = "container-fluid">
+		<h4>Purchase history</h4>
 		<div class ="row">
-			<h4>Purchase history</h4>
+			<div class = "card-deck">
 				<% @orderhistory.each do |product| %>
-					<div class="col-xs-4 item-photo">
-						<%= image_tag product.image_url, :style => "height: 15rem; width: 15rem;" %>
-					</div>
+					<div class = "col-sm-4">
+						<div class="card">
+							<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
 
-					<div class="card-body text-primary col-3">
-						<div class="card-header bg-transparent border-primary">
-							<h3><%= product.product_name %></h3>
-						</div>
+							<div class="card-body text-primary">
+								<div class="card-header bg-transparent border-primary">
+									<h3><%= product.product_name %></h3>
+								</div>
+						
+								<div class="card-body text-primary" style="max-width: 200rem;">
+									<h8 style="color:#337ab7">Price:</h8>
+									<h6 style="margin-top:0px; color:#2E64FE ">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h4>
+									<h8 style="color:#337ab7">Category:</h8>
+									<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
+								</div>
 					
-						<div class="card-body text-primary" style="max-width: 200rem;">
-							<h8 style="color:#337ab7">Price:</h8>
-							<h6 style="margin-top:0px; color:#2E64FE ">SGD$<%= product.price %></h4>
-							<h8 style="color:#337ab7">Category:</h8>
-							<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
+								<div class="card-footer bg-transparent border-primary">
+									<p class="card-text"><%= product.description %></p>
+								</div>
+							</div>	
 						</div>
-				
-						<div class="card-footer bg-transparent border-primary">
-								<p class="card-text"><%= product.description %></p>
-							<div class="section" style="padding-bottom:20px;"></div>
-						</div>
-					</div>	
+					</div>		
 				<% end %>
+			</div>	
 		</div>
 	</div>
 <% end %>

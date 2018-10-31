@@ -32,9 +32,9 @@ class ProductsController < ApplicationController
     uploaded_file = params[:product][:image_url].path
     cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
 
-     params[:product][:image_url] = cloudinary_file['public_id']
+    params[:product][:image_url] = cloudinary_file['public_id']
 
-     @product = Product.new(product_params)
+    @product = Product.new(product_params)
     @product.seller = current_user
 
 
@@ -51,9 +51,7 @@ class ProductsController < ApplicationController
 
     params[:product][:image_url] = cloudinary_file['public_id']
 
-
     @product.seller = current_user
-
 
     @product.update(product_params)
     redirect_to user_product_path(user_id: current_user.id, id: @product.id)
