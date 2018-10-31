@@ -1,20 +1,13 @@
 class UsersController < ApplicationController
 
-#   def show
-#   end
-
-#   def new
-#   end
-
-#   def edit
-#   end
-
-#   def create
-#   end
-
-#   def update
-#   end
-
-#   def destroy
-#   end
+  def show
+    if current_user
+        @user = User.find(params[:id])
+        @listedproducts = Product.where(seller_id: params[:id])
+        @orderhistory = Product.where(buyer_id: params[:id])
+    else 
+      redirect_to new_user_session_path
+    end
+  end
+  
 end

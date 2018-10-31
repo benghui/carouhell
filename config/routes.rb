@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index] do
-    resources :products 
+    resources :products, only: [:index]
   end
 
   root to: "products#index"
