@@ -20,7 +20,7 @@
 						<h8 style="color:#337ab7">Seller:</h8>
                     	<h5><p><%= link_to @product.seller.username, user_path(@product.seller_id) %><small style="color:#337ab7"></small></p></h5>
                     	<h8 style="color:#337ab7">Price:</h8>
-                    	<h4 style="margin-top:0px; color:#2E64FE ">SGD$<%= @product.price %></h4>
+                    	<h4 style="margin-top:0px; color:#2E64FE ">SGD<%= number_to_currency(@product.price, delimiter: ", ") %></h4>
 						<h8 style="color:#337ab7">Category:</h8>
                     	<h4 style="margin-top:0px; color:#2E64FE "><%= @product.category.product_category %></h4>
 					</div>
