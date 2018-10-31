@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
-
+  
+  helper_method :sort_column, :sort_direction
   before_action :authenticate_user!, :except => [ :show, :index ]
   
   def index
     if Category.find_by_id(params[:category_id])
-      @products = Product.where(category_id: params[:category_id])
+      @products = Product.where(category_id: params[:category_id]).order(sort_column + ' ' + sort_direction)
     else 
-      @products = Product.all
+      @products = Product.order(sort_column + ' ' + sort_direction)
     end
   end
 
@@ -74,5 +75,13 @@ class ProductsController < ApplicationController
 private
   def product_params
     params.require(:product).permit(:product_name, :price, :seller_id, :buyer_id, :category_id, :description, :image_url)
+  end
+
+  def sort_column
+    Product.column_names.include?(params[:sort]) ? params[:sort]: "product_name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction]: "asc"
   end
 end
