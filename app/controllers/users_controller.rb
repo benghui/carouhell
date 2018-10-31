@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 
   def show
-    if User.find_by_id(params[:id]).id == current_user.id
-        @username = User.find(params[:id]).username
+    if current_user
+        @user = User.find(params[:id])
         @listedproducts = Product.where(seller_id: params[:id])
         @orderhistory = Product.where(buyer_id: params[:id])
-      else 
-        @listedproducts = Product.where(seller_id: params[:id])
-      end 
+    else 
+      redirect_to new_user_session_path
+    end
   end
-
+  
 end
