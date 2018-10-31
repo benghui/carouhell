@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_065620) do
 
   create_table "products", force: :cascade do |t|
     t.string "product_name"
-    t.integer "price"
+    t.decimal "price", precision: 10, scale: 2
     t.bigint "seller_id"
     t.bigint "buyer_id"
     t.bigint "category_id"
