@@ -20,7 +20,7 @@
         <ul class="navbar-nav mr-auto">
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+          <a class="nav-link dropdown-toggle" style="color:#FFFFFF;" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
           
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% Category.all.each do |category| %>
@@ -30,12 +30,12 @@
         </li>
 
         <% if current_user == nil %>
-          <li class="nav-item"><%= link_to 'Login', new_user_session_path, :class => "nav-link" %></li>
-          <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, :class => "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'Login', new_user_session_path, :class => "nav-link", :style => "color:#FFFFFF;" %></li>
+          <li class="nav-item"><%= link_to 'Sign Up', new_user_registration_path, :class => "nav-link",:style => "color:#FFFFFF;" %></li>
         <% else %>
-          <li class="nav-item"><%= link_to 'Sell', new_user_product_path(user_id: current_user.id), :class => "nav-link"%></li> 
-          <li class="nav-item"><%= link_to 'Logout', destroy_user_session_url, method: :delete, :class => "nav-link" %></li>
-          <span class="navbar-text" style="color:#005ff9;">Welcome back, <%= current_user.username %>!</span>
+          <li class="nav-item"><%= link_to 'Sell', new_user_product_path(user_id: current_user.id), :class => "nav-link", :style => "color:#FFFFFF;"%></li> 
+          <li class="nav-item"><%= link_to 'Logout', destroy_user_session_url, method: :delete, :class => "nav-link", :style => "color:#FFFFFF;" %></li>
+          <span class="navbar-text" style="color:#FFFFFF;">Welcome back, <%= link_to current_user.username, user_path(current_user.id), :style => "color:#FFFFFF;" %>!</span>
         <% end %>
 
         </ul>
