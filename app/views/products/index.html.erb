@@ -1,17 +1,30 @@
 <div class = "container-fluid">
-	<h2> The Best Deals </h2> </br>
+	<h2> The Best Deals </h2> 
+	</br>
+
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Sort by
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class = "dropdown-item" style = "color:#000000"><%= sortable "product_name" %></a>
+			<a class = "dropdown-item" style = "color:#000000"><%= sortable "price" %></a>
+		</div>
+	</div>
+	</br>
+
 	<div class = "row">
 		<div class="card-deck">
-			<% @products.each do |product| %>
+			<% for product in @products %>
 				<div class = "col-sm-4">
 					<div class="card" style="width: 27rem;">
 
 						<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
 
 						<div class="card-body">
-							<h5 class="card-title" style ="text-align: center"><%= product.product_name %></h5>
-							<h5 class="card-title" style ="text-align: center">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h5>
-							<h5 class="card-title" style ="text-align: center"><%= product.category.product_category %></h5>
+							<h5 class="card-title" style ="text-align: left"><%= product.product_name %></h5>
+							<h5 class="card-title" style ="text-align: left">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h5>
+							<h5 class="card-title" style ="text-align: left"><%= link_to product.category.product_category, category_products_path(category_id: product.category_id), :style => 'color:#000000' %></h5>
 						</div>
 
 						<ul class="list-group list-group-flush">
