@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
       @products = Product.where(category_id: params[:category_id])
     else 
       @products = Product.all
-    end 
+    end
   end
 
   def show
@@ -28,16 +28,32 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+
+    uploaded_file = params[:product][:image_url].path
+    cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
+
+     params[:product][:image_url] = cloudinary_file['public_id']
+
+     @product = Product.new(product_params)
     @product.seller = current_user
+
 
     @product.save
     redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
   def update
+
     @product = Product.find(params[:id])
+
+    uploaded_file = params[:product][:image_url].path
+    cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
+
+    params[:product][:image_url] = cloudinary_file['public_id']
+
+
     @product.seller = current_user
+
 
     @product.update(product_params)
     redirect_to user_product_path(user_id: current_user.id, id: @product.id)

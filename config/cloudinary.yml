@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: pasirris
+  api_key: '699658587497999'
+  api_secret: f7aF1T75FPeurb_uMs2zhg9t7OE
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: pasirris
+  api_key: '699658587497999'
+  api_secret: f7aF1T75FPeurb_uMs2zhg9t7OE
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: pasirris
+  api_key: '699658587497999'
+  api_secret: f7aF1T75FPeurb_uMs2zhg9t7OE
+  enhance_image_tag: true
+  static_image_support: false
