@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :products do
         patch :buy
+        put :buy 
+
       resources :comments
     end
   end
@@ -15,3 +17,4 @@ Rails.application.routes.draw do
 
   root to: "products#index"
 end
+

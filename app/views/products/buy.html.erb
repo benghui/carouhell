@@ -2,16 +2,18 @@
 
 	<h2>Make an offer to @product.seller.username</h2>
 
-	<%= form_with model: @offer, url: user_product_buy, local: true do |form| %>
+	<%= form_with model: @offer, url: , local: true do |form| %>
 
 		<p>
 			<h3>Product Name</h3>
 			<h4>@product.name</h4>
+			<%= hidden_field_tag :product_name, @product.price %>
         	</p>
 
 		<p>
 			<h3>Offer Price</h3>
 			<h4>@product.price</h4>
+			<%= hidden_field_tag :price, @product.price %>
 		</p>
 
 		<p>
@@ -24,7 +26,7 @@
 				<%= form.radio_button :transaction_method, "meet", :checked => true %> Let's Meet
 				<%= form.radio_button :transaction_method, "mail" %> Mail it to me
 		</p>
-			
+
 		<p>
 			<%= form.label :meetup_location %> <br>
 			if @product.location_1 && @product.location_2
