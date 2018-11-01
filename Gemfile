@@ -3,10 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-
+# redis
+gem 'redis', '~> 4.0.3'
 #cloudinary for images
 gem 'cloudinary'
-
 # devise
 gem 'devise'
 # bootstrap
