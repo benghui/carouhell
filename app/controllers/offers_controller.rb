@@ -19,10 +19,10 @@ class OffersController < ApplicationController
           end
         redirect_to user_product_path
     end
-    
+
 
     private
-
+gi
     def offer_params
         params.require(:offer).permit(:product_name, :price, :message, :transaction_method, :meetup_location, :approve, :user_id, :product_id)
     end
