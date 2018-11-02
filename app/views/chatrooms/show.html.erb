@@ -5,7 +5,7 @@
         <%= render @chatroom.messages %>
     </div>
 
-    <%= form_for @message, url: '#' do |f| %>
+    <%= form_with model: @message, url: create_message_path do |f| %>
         <div class="form-group">
             <%= f.label :body %>
             <%= f.text_area :body, class: 'form-control' %>

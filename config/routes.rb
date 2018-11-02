@@ -17,5 +17,7 @@ Rails.application.routes.draw do
 
   root to: "products#index"
 
+  post '/messages/create', to: 'chatrooms#create_message', as: 'create_message'
+
   mount ActionCable.server => '/cable'
 end
