@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
+  resources :chatrooms, only: [:new, :create, :show, :index]
+
   root to: "products#index"
 
   mount ActionCable.server => '/cable'
