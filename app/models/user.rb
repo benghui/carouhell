@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :products, foreign_key: "seller_id"
   has_many :products, foreign_key: "buyer_id"
+  has_many :chatrooms, dependent: :destroy
 
   def email_required?
     false

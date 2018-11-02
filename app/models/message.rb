@@ -1,3 +1,5 @@
 class Message < ApplicationRecord
-    after_create_commit { MessageBroadcastJob.perform_later self }
+  belongs_to :user
+  belongs_to :chatroom
+  after_create_commit {MessageBroadcastJob.perform_now self}
 end

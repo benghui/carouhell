@@ -1,0 +1,18 @@
+<div class = "container">
+    <div class="row col-md-8 col-md-offset-2">
+        <h1><%= @chatroom.title %></h1>
+
+        <div class="panel panel-default">
+        <% if @chatroom.messages.any? %>
+            <div class="panel-body" id="messages" data-chatroom=<%=@chatroom.id%>>
+            <%= render partial: 'messages/message', collection: @chatroom.messages%>
+            </div>
+        <%else%>
+            <div class="panel-body hidden" id="messages">
+            </div>
+        <%end%>
+        </div>
+
+        <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}%>
+    </div>
+</div>
