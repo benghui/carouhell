@@ -10,5 +10,7 @@ class ChatroomsChannel < ApplicationCable::Channel
   def send_message(data)
     # process data sent from the page
     current_user.messages.create!(body: data['message'], chatroom_id: data['chatroom_id'])
+
+    # data
   end
 end
