@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create(email: "beng@beng.com", username: "beng", password: "password")
+User.create(email: "trav@trav.com", username: "trav", password: "password")
+User.create(email: "saufi@saufi.com", username: "saufi", password: "password")
+User.create(email: "jon@jon.com", username: "jon", password: "password")
+User.create(email: "gab@gab.com", username: "gab", password: "password")
+
+Category.create(product_category: "mobile")
+Category.create(product_category: "computers")
+Category.create(product_category: "music")
+Category.create(product_category: "accessories")
+Category.create(product_category: "food")
+Category.create(product_category: "fashion")
+
+Product.create(product_name: "JH 16v2", price: 2000, seller_id: 1, category_id: 3, image_url: "c88vmpbgqacazxszy9qk", description: "Time to get loud. The JH16v2 is in the ears of nearly every famous touring Rock & Roll band on the planet (and also some Soft Rockers, too). Our 10 driver configuration brings clarity to the broadest range of sounds, so you’ll hear the crash of the cymbal all the way down to the crunch of the bass at full volume with zero distortion.")
+Product.create(product_name: "drums", price: 4000, seller_id: 1, category_id: 3, image_url: "v2sdncr96yfqqvvkefb6", description: "drums")
+Product.create(product_name: "colossal banana", price: 100000, seller_id: 5, category_id: 5, image_url: "zb6xkzgwimtvvpdlzr3m", description: "SUPER")
+Product.create(product_name: "awesome pants", price: 70, seller_id: 3, category_id: 6, image_url: "vbmlywy3diyel7ibnzm0", description: "this pants so nice lah")
+Product.create(product_name: "shirt", price: 100, seller_id: 3, category_id: 6, image_url: "jk0vbjowu63ewgsgokey", description: "this shirt so nice lah")
+Product.create(product_name: "black shirt", price: 120, seller_id: 3, category_id: 6, image_url: "vr7upf9fbdvq7gghyb7x", description: "this black shirt is so nice lah")
+Product.create(product_name: "super shirt", price: 70, seller_id: 4, category_id: 6, image_url: "rpyex6bizffonwbxdytk", description: "super super super super super super super super supersupersupersuper")
+Product.create(product_name: "razer phone", price: 1350, seller_id: 2, category_id: 1, image_url: "okma1rvgrzd4zpeghcrl", description: "razer phone")
+Product.create(product_name: "razer keyboard", price: 185, seller_id: 5, category_id: 4, image_url: "aoxpigzr4icajx5ls7zk", description: "razer keyboard")
+Product.create(product_name: "razer mouse", price: 165, seller_id: 5, category_id: 4, image_url: "g6nexcofrlwo7ynpcxsv", description: "razer mouse")
+Product.create(product_name: "iphone X", price: 1500, seller_id: 5, category_id: 1, image_url: "fq7dw9dznv06av9t4vyy", description: "iphone")
+Product.create(product_name: "ipad pro", price: 1125, seller_id: 2, category_id: 1, image_url: "wgyq9qx8vzukxg3xjtjh", description: "ipad pro")
+Product.create(product_name: "macbook", price: 2200, seller_id: 5, category_id: 2, image_url: "tr4kpbyo5ere08flge5w", description: "macbook")
+Product.create(product_name: "mac mini", price: 800, seller_id: 5, category_id: 2, image_url: "w3nmgzqr4op9enawhmnn", description: "mac mini")

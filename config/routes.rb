@@ -16,5 +16,11 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
+  resources :chatrooms, only: [:new, :create, :show, :index]
+
   root to: "products#index"
+
+  post '/messages/create', to: 'chatrooms#create_message', as: 'create_message'
+
+  mount ActionCable.server => '/cable'
 end
