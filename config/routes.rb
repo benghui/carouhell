@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   
   resources :users do
     resources :products do
-        patch :buy
+        get :buy
+        # make alterations in products table, so thats why we used patch - patch into products
+        # change to the displaying of form
       resources :comments
+      resources :offers
     end
   end
 
