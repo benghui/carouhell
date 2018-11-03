@@ -7,13 +7,20 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#messages').append data['message'] #looks for div with id of messages
+    unless data.message.blank?
+      $('#messages-table').append data.message
+      scroll_bottom()
 
-  speak: (message)->
-    @perform 'speak', message: message
+$(document).on 'turbolinks:load', ->
+  submit_message()
+  scroll_bottom()
 
-  $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-    if event.keyCode is 13 # return = send
-      App.room.speak event.target.value
-      event.target.value = ''
-      event.preventDefault()    
+submit_message = () ->
+  $('#message_content').on 'keydown', (event) ->
+    if event.keyCode is 13
+      $('input').click()
+      event.target.value = ""
+      event.preventDefault()
+
+scroll_bottom = () ->
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
