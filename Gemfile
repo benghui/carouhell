@@ -7,6 +7,10 @@ ruby '2.5.1'
 #cloudinary for images
 gem 'cloudinary'
 
+#cloudinary for maps
+gem 'geocoder'
+
+
 # devise
 gem 'devise'
 # bootstrap
