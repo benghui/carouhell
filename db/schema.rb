@@ -55,10 +55,14 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.bigint "seller_id"
     t.bigint "buyer_id"
     t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "image_url"
     t.text "description"
+    t.string "place"
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"

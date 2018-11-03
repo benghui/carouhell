@@ -5,6 +5,8 @@ ruby '2.5.1'
 
 #cloudinary for images
 gem 'cloudinary'
+#geocoder for maps
+gem 'geocoder'
 # devise
 gem 'devise'
 # bootstrap
