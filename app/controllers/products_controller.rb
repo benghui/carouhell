@@ -58,12 +58,14 @@ class ProductsController < ApplicationController
     redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
-  def buy
-    @product = Product.find(params[:product_id])
+  # def buy
+  #   @product = Product.find(params[:product_id])
+  #   @offer = Offer.new
+  #   # @product.update_attributes(buyer_id: params[:user_id])
 
-    @product.update_attributes(buyer_id: params[:user_id])
-    redirect_to user_product_path(user_id: current_user.id, id: @product.id)
-  end
+  #   redirect_to user_product_path(user_id: current_user.id, id: @product.id)
+    
+  # end
 
   def destroy
     @product = Product.find(params[:id])

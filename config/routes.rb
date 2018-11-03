@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   resources :users do
-    # Not sure if this is in the right place
-    patch :approve
-
     resources :products do
-        patch :buy
+        get :buy
+        # make alterations in products table, so thats why we used patch - patch into products
+        # change to the displaying of form
       resources :comments
+      resources :offers
     end
   end
 

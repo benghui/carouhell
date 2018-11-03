@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :products, foreign_key: "seller_id"
   has_many :products, foreign_key: "buyer_id"
   # establish if user is right place to house messages, or should it be under OFFER
-  has_many :messages, optional:true
 
   def email_required?
     false

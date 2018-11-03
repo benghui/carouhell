@@ -1,30 +1,33 @@
 class OffersController < ApplicationController
 
-
-    def create
-        @offer = Offer.new(offer_params)
-        @offer.save
-
-        redirect_to user_product_path(user_id: current_user.id, id: @offer.id)
-      end
-    
-    def approve
-        authorize @offer
-        @offer = Offer.find(params[:id])
-
-        if @offer.approved?
-            @offer.update_attribute(:approved, false)
-          else
-            @offer.update_attribute(:approved, true)
-          end
-        redirect_to user_product_path
+    def new
+        @offer = Offer.new
+        @product = Product.find(params[:product_id])        
     end
 
+    def create    
+        @offer = Offer.find(offer_params)
+        @offer.save
+
+        redirect_to user_product_path(user_id: current_user.id, id: @product.id)
+      end
+    
+    # def approve
+    #     authorize @offer
+    #     @offer = Offer.find(params[:id])
+
+    #     if @offer.approved?
+    #         @offer.update_attribute(:approved, false)
+    #       else
+    #         @offer.update_attribute(:approved, true)
+    #       end
+    #     redirect_to user_product_path
+    # end
 
     private
-gi
+
     def offer_params
-        params.require(:offer).permit(:product_name, :price, :message, :transaction_method, :meetup_location, :approve, :user_id, :product_id)
+        params.require(:offer).permit(:product_name, :price, :remarks, :transaction_method, :meetup_location, :user_id, :product_id, :approve )
     end
 
 end 
