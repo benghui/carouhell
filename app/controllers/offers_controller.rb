@@ -6,10 +6,12 @@ class OffersController < ApplicationController
     end
 
     def create    
-        @offer = Offer.find(offer_params)
+        @offer = Offer.new(offer_params)
+        @offer.user = current_user
+        @offer.product = Product.find(params[:product_id])
         @offer.save
 
-        redirect_to user_product_path(user_id: current_user.id, id: @product.id)
+        redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
       end
     
     # def approve
@@ -23,11 +25,10 @@ class OffersController < ApplicationController
     #       end
     #     redirect_to user_product_path
     # end
-
     private
 
     def offer_params
-        params.require(:offer).permit(:product_name, :price, :remarks, :transaction_method, :meetup_location, :user_id, :product_id, :approve )
+        params.require(:offer).permit(:remarks, :price, :transaction_method, :meetup_location, :approve, :user_id, :product_id)
     end
 
 end 
