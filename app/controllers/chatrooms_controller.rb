@@ -12,7 +12,7 @@ class ChatroomsController < ApplicationController
     @chatroom = current_user.chatrooms.build(chatrooms_params)
     
     if @chatroom.save
-      flash[:success] = 'Chatroom added!'
+      # flash[:success] = 'Chatroom added!'
       redirect_to chatrooms_path
     else
       render 'new'
@@ -24,14 +24,14 @@ class ChatroomsController < ApplicationController
     @message = Message.new
   end
 
-  def create_message
-    # puts "RECEIVEDDD: #{params[:message][:body]}"
-    @message = current_user.messages.build(message_params)
-    # read incoming params 
-    # create message 
-    # call broadcast to actioncable
-    ActionCable.server.broadcast("chatrooms_#{message.chatroom.id}_channel", message: render_message(message), user: message.user.username)
-  end
+  # def create_message
+  #   # puts "RECEIVEDDD: #{params[:message][:body]}"
+  #   @message = current_user.messages.build(message_params)
+  #   # read incoming params 
+  #   # create message 
+  #   # call broadcast to actioncable
+  #   ActionCable.server.broadcast("chatrooms_#{message.chatroom.id}_channel", message: render_message(message), user: message.user.username)
+  # end
 
   private
 
