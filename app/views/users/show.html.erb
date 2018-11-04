@@ -1,90 +1,59 @@
 <div class = "container-fluid">
-	<h4>Pending Offers</h4>
-	<%= form_with model: @product, local: true do |form| %>
-		<% @offers.each do |off| %>
-			<% if off.approve == false %>
-				<h5>Offer from <%= off.user.username %> for your item:</h5>  
-				<h6><%= off.product.product_name %></h6>
-				<button type="button" class="btn btn-primary"><%= link_to 'Approve', user_product_offer_path(user_id: current_user.id, product_id: off.product.id, buyer_id: off.user_id, offer_id: off.id), method: :patch, :style => 'color:#FFFFFF' %></button>
-			<% end %>
-		<% end %>
-	<% end %>
 
-	<hr>
-	<br>
-	<h4> Products by <%= @user.username %></h4>
-	<div class ="row">
-		<div class="card-deck">
-			<% @listedproducts.each do |product| %>
-				<div class ="col-sm-4" >
-					<div class="card" style="width: 27rem;">
-						<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
+	<div class="container">
 
-						<div class="card-body">
-							<h5 class="card-title" style ="text-align: center"><%= product.product_name %></h5>
-							<h5 class="card-title" style ="text-align: center">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h5>
-							<h5 class="card-title" style ="text-align: center"><%= product.category.product_category %></h5>
-						</div>
 
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-								<p class="card-text"><%= product.description %></p>
-							</li>
+	<h4> Products by <%= @user.username %></h4> </br>
+
+
+	<div class="row">
+
+		<% @listedproducts.each do |product| %>
+
+  	<div class="col-sm-4">
+
+			<div class="card border-primary mb-3" style = "margin-bottom: 10px">
+
+			<div class="card">
+				<%= cl_image_tag(product.image_url, :width => 150, :height => 150, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
+
+				<div class="card-body text-primary">
+
+					<h5 class="card-title"><h5 class="card-title" style ="text-align: left">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h5></h5>
+					<h5 class="card-title" style ="text-align: left"><%= link_to product.category.product_category, category_products_path(category_id: product.category_id), :style => 'color:#2f7df6' %></h5>
+
+					<ul class="list-group list-group-flush">
+							<p>
+							Seller: <%= link_to product.seller.username, user_path(product.seller_id) %></p>
+							<% if current_user %>
+							</br>
+							<p><%= link_to 'DETAILS', user_product_path(user_id: current_user.id, id: product.id) %></p>
+
 						</ul>
 
-						<div class="card-footer">
-						<% if product.buyer_id %>
+				</div>
+				<div class="card-footer" id="wow">
+					<% if product.buyer_id %>
 								<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
-						<% elsif current_user.id == product.seller.id %>
+							<% elsif current_user.id == product.seller.id %>
 								<button type="button" class="btn btn-primary"><%= link_to 'Edit',  edit_user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' %></button>
 								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' , method: :delete, data: { confirm: 'Are you sure?' } %></button>
-						<% else %>
-								<button type="button" class="btn btn-primary"><%= link_to 'Make Offer', new_user_product_offer_path(user_id: current_user.id, product_id: product.id), :style => 'color:#FFFFFF' %></button>
-						<% end %>  
-						</div>
-					</div></br>
-				</div>	
+							<% else %>
+								<button type="button" class="btn btn-primary"><%= link_to 'Buy', user_product_buy_path(user_id: current_user.id, product_id: product.id), method: :patch, data: {confirm: 'Do you want to buy this product?'}, :style => 'color:#FFFFFF' %></button>
+							<% end %>
+
+				</div>
+			</div>
 			<% end %>
 		</div>
-	</div>	
-</div>
-<hr>
-<br>
 
-<% if @user.id == current_user.id %>
-	<div class = "container-fluid">
-		<h4>Purchase history</h4>
-		<div class ="row">
-			<div class = "card-deck">
-				<% @orderhistory.each do |product| %>
-					<div class = "col-sm-4">
-						<div class="card" style="width: 27rem;">
-							<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
-
-							<div class="card-body text-primary">
-								<div class="card-header bg-transparent border-primary">
-									<h3><%= product.product_name %></h3>
-								</div>
-						
-								<div class="card-body text-primary" style="max-width: 200rem;">
-									<h8 style="color:#337ab7">Price:</h8>
-									<h6 style="margin-top:0px; color:#2E64FE ">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h4>
-									<h8 style="color:#337ab7">Category:</h8>
-									<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
-								</div>
-					
-								<div class="card-footer bg-transparent border-primary">
-									<p class="card-text"><%= product.description %></p>
-								</div>
-							</div>	
-						</div></br>
-					</div>		
-				<% end %>
-			</div>	
-		</div>
 	</div>
 <% end %>
+</div>
+
+
+</div>
+</div>
 
 
 
-	
