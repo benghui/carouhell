@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+#securerandom
+gem 'rubysl-securerandom', '~> 2.0'
 #cloudinary for images
 gem 'cloudinary'
 #geocoder for maps

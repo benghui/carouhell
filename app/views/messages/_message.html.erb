@@ -1,17 +1,1 @@
-<div class="message">
-    <div class="card">
-        <div class="card-block">
-            <div class="row">
-                <div class="col-md-1">
-                    <%= gravatar_for message.user %> #may need to change
-                </div>
-                <div class="col-md-11">
-                    <p class="card-text">
-                    <span class="text-muted"><%= message.user.username %> at <%= message.timestamp %> says</span><br>
-                    <%= message.body %>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<p><%= message.user.username %>: <%=message.content%></p>
