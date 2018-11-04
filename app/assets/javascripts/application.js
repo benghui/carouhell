@@ -18,3 +18,4 @@
 //= require bootstrap-sprockets
 //= require cable 
 //= require_tree .
+//= require_tree ./channels
