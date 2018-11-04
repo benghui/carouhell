@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
   resources :users do
+    resources :chats, only: [:index, :show, :create]
     resources :products do
         get :buy
         put :approve
@@ -15,13 +16,9 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
   end
 
-  resources :chatrooms, only: [:new, :create, :show, :index]
+  resources :messages, only:[:create]
 
   root to: "products#index"
-
-  post '/messages/create', to: 'chatrooms#create_message', as: 'create_message'
-
-  
 
   mount ActionCable.server => '/cable'
 end

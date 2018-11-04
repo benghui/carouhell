@@ -8,9 +8,18 @@ class User < ApplicationRecord
   has_many :comments
   has_many :products, foreign_key: "seller_id"
   has_many :products, foreign_key: "buyer_id"
-  has_many :chatrooms, dependent: :destroy
-  has_many :messages, dependent: :destroy
-  has_many :offers
+
+  has_many :messages
+  has_many :subscriptions
+  has_many :chats, through: :subscriptions
+  
+  def existing_chats_users
+    existing_chat_users = []
+    self.chats.each do |chat|
+    existing_chat_users.concat(chat.subscriptions.where.not(user_id: self.id).map {|subscription| subscription.user})
+    end
+    existing_chat_users.uniq
+  end
 
   def email_required?
     false

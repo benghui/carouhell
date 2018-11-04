@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_153213) do
+ActiveRecord::Schema.define(version: 2018_11_04_054658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,12 +21,10 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "chatrooms", force: :cascade do |t|
-    t.string "title"
-    t.bigint "user_id"
+  create_table "chats", force: :cascade do |t|
+    t.string "identifier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_chatrooms_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -40,12 +38,12 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "body"
+    t.string "content"
     t.bigint "user_id"
-    t.bigint "chatroom_id"
+    t.bigint "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -83,6 +81,15 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "chat_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_subscriptions_on_chat_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -97,9 +104,10 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "chatrooms", "users"
-  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "products", "users", column: "buyer_id"
   add_foreign_key "products", "users", column: "seller_id"
+  add_foreign_key "subscriptions", "chats"
+  add_foreign_key "subscriptions", "users"
 end
