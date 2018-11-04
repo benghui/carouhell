@@ -12,38 +12,17 @@ class OffersController < ApplicationController
         @offer.save
 
         redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
-      end
+    end
 
-    def approve
-        @product = Product.find(params[:id])
-        if @product.offer
-
-
-        @offer = Offer.find(params[:offer_id])
-        if 
-            @offer.update_attributes(approve: true)
-            @offer.update_attributes(buyer_id: true)
-        else 
-            
-        end 
-
+    def update   
         @product = Product.find(params[:product_id])
         @product.update_attributes(buyer_id: params[:user_id])
-
+        @offer = Offer.find(params[:offer_id])
+        @offer.update_attributes(approve: true)
         redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
-    end 
+    end
 
-    # def approve
-    #     authorize @offer
-    #     @offer = Offer.find(params[:id])
 
-    #     if @offer.approved?
-    #         @offer.update_attribute(:approved, false)
-    #       else
-    #         @offer.update_attribute(:approved, true)
-    #       end
-    #     redirect_to user_product_path
-    # end
     private
 
     def offer_params

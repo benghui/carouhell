@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.bigint "seller_id"
     t.bigint "buyer_id"
     t.bigint "category_id"
+    t.bigint "offer_id"
     t.string "image_url"
     t.text "description"
     t.string "place"
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_153213) do
     t.datetime "updated_at", null: false
     t.index ["buyer_id"], name: "index_products_on_buyer_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["offer_id"], name: "index_products_on_offer_id"
     t.index ["seller_id"], name: "index_products_on_seller_id"
   end
 
