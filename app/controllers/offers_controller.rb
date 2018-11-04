@@ -6,30 +6,27 @@ class OffersController < ApplicationController
     end
 
     def create    
-        @offer = Offer.find(offer_params)
+        @offer = Offer.new(offer_params)
+        @offer.user = current_user
+        @offer.product = Product.find(params[:product_id])
         @offer.save
 
-        redirect_to user_product_path(user_id: current_user.id, id: @product.id)
-      end
-    
-    # def approve
-    #     authorize @offer
-    #     @offer = Offer.find(params[:id])
+        redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
+    end
 
-    #     if @offer.approved?
-    #         @offer.update_attribute(:approved, false)
-    #       else
-    #         @offer.update_attribute(:approved, true)
-    #       end
-    #     redirect_to user_product_path
-    # end
+    def update   
+        @product = Product.find(params[:product_id])
+        @product.update_attributes(buyer_id: params[:buyer_id])
+        @offer = Offer.find(params[:offer_id])
+        @offer.update_attributes(approve: true)
+        redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
+    end
+
 
     private
 
     def offer_params
-        params.require(:offer).permit(:product_name, :price, :remarks, :transaction_method, :meetup_location, :user_id, :product_id, :approve )
+        params.require(:offer).permit(:remarks, :price, :transaction_method, :meetup_location, :approve, :user_id, :product_id)
     end
 
 end 
-
-# before_action :set_agency, only: [:show, :edit, :update, :destroy, :approve]

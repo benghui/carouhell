@@ -6,8 +6,7 @@ Rails.application.routes.draw do
     resources :chats, only: [:index, :show, :create]
     resources :products do
         get :buy
-        # make alterations in products table, so thats why we used patch - patch into products
-        # change to the displaying of form
+        put :approve
       resources :comments
       resources :offers
     end
