@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :products do
         get :buy
-        # make alterations in products table, so thats why we used patch - patch into products
-        # change to the displaying of form
+        put :approve
       resources :comments
       resources :offers
     end
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
   root to: "products#index"
 
   post '/messages/create', to: 'chatrooms#create_message', as: 'create_message'
+  # patch 'offers/approve', to: ','
+
+  
 
   mount ActionCable.server => '/cable'
 end

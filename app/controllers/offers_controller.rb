@@ -13,7 +13,26 @@ class OffersController < ApplicationController
 
         redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
       end
-    
+
+    def approve
+        @product = Product.find(params[:id])
+        if @product.offer
+
+
+        @offer = Offer.find(params[:offer_id])
+        if 
+            @offer.update_attributes(approve: true)
+            @offer.update_attributes(buyer_id: true)
+        else 
+            
+        end 
+
+        @product = Product.find(params[:product_id])
+        @product.update_attributes(buyer_id: params[:user_id])
+
+        redirect_to user_product_path(user_id: current_user.id, id: params[:product_id])
+    end 
+
     # def approve
     #     authorize @offer
     #     @offer = Offer.find(params[:id])
@@ -32,5 +51,3 @@ class OffersController < ApplicationController
     end
 
 end 
-
-# before_action :set_agency, only: [:show, :edit, :update, :destroy, :approve]
