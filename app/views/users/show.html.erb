@@ -1,14 +1,4 @@
 <div class = "container-fluid">
-	<h4>Pending Offers</h4>
-	<%= form_with model: @product, local: true do |form| %>
-		<% @offers.each do |off| %>
-			<% if off.approve == false %>
-				<h5>Offer from <%= off.user.username %> for your item:</h5>  
-				<h6><%= off.product.product_name %></h6>
-				<button type="button" class="btn btn-primary"><%= link_to 'Approve', user_product_offer_path(user_id: current_user.id, product_id: off.product.id, buyer_id: off.user_id, offer_id: off.id), method: :patch, :style => 'color:#FFFFFF' %></button>
-			<% end %>
-		<% end %>
-	<% end %>
 
 	<hr>
 	<br>
@@ -37,7 +27,13 @@
 								<h3 style="margin-top:0px; color:#FF0000 ">Item Sold</h3>
 						<% elsif current_user.id == product.seller.id %>
 								<button type="button" class="btn btn-primary"><%= link_to 'Edit',  edit_user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' %></button>
-								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' , method: :delete, data: { confirm: 'Are you sure?' } %></button>
+								<button type="button" class="btn btn-primary"><%= link_to 'Delete Product', user_product_path(user_id: current_user.id, id: product.id), :style => 'color:#FFFFFF' , method: :delete, data: { confirm: 'Are you sure?' } %></button></br></br>
+									<% @offers.each do |off| %>
+										<% if off.approve == false && product.id == off.product_id %>
+											Offer from: <%= off.user.username %></br>
+											<button type="button" class="btn btn-primary"><%= link_to 'Approve', user_product_offer_path(user_id: current_user.id, product_id: off.product.id, buyer_id: off.user_id, offer_id: off.id), method: :patch, :style => 'color:#FFFFFF' %></button></br></br>
+										<% end %>	
+									<% end %>
 						<% else %>
 								<button type="button" class="btn btn-primary"><%= link_to 'Make Offer', new_user_product_offer_path(user_id: current_user.id, product_id: product.id), :style => 'color:#FFFFFF' %></button>
 						<% end %>  
