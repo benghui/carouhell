@@ -41,11 +41,11 @@
           <span class="navbar-text" style="color:#FFFFFF;">Welcome back, <%= link_to current_user.username, user_path(current_user.id), :style => "color:#FFFFFF;" %>!</span>
         <% end %>
 
-        </ul>
+        <%# </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Find products" aria-label="Search">
             <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> %>
       </div>
     </nav>
 
