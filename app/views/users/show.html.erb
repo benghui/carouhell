@@ -1,5 +1,14 @@
 <div class = "container-fluid">
-
+	<div class = "container">
+		<% if @user.id != current_user.id %>
+			<button type="button" class="btn btn-primary">
+				<%= link_to(user_chats_path(current_user, :other_user => @user.id), method: :post, :style => 'color:#FFFFFF') do %>
+					Chat with <%= @user.username %>
+				<% end %>
+			</button>
+		<% end %>
+	</div>
+	</br>
 	<div class="container">
 
 	<h4> Products by <%= @user.username %></h4> </br>
