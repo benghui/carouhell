@@ -2,7 +2,6 @@
 
 	<div class="container">
 
-
 	<h4> Products by <%= @user.username %></h4> </br>
 
 	<div class = "row">
@@ -18,7 +17,6 @@
 					<% end %>
 				<% end %>
 			<% end %>
-
 		</div>
 	</div>
 	<div class="row">
@@ -65,10 +63,41 @@
 	</div>
 <% end %>
 </div>
-
-
 </div>
 </div>
 
+<% if @user.id == current_user.id %>
+	<div class = "container-fluid">
+		<h4>Purchase history</h4>
+		<div class ="row">
+			<div class = "card-deck">
+				<% @orderhistory.each do |product| %>
+					<div class = "col-sm-4">
+						<div class="card" style="width: 27rem;">
+							<%= cl_image_tag(product.image_url, :width => 250, :height => 300, :style => 'margin-left: auto; margin-right: auto; display: block; padding-top: 10px') %>
+
+							<div class="card-body text-primary">
+								<div class="card-header bg-transparent border-primary">
+									<h3><%= product.product_name %></h3>
+								</div>
+						
+								<div class="card-body text-primary" style="max-width: 200rem;">
+									<h8 style="color:#337ab7">Price:</h8>
+									<h6 style="margin-top:0px; color:#2E64FE ">SGD<%= number_to_currency(product.price, delimiter: ", ") %></h4>
+									<h8 style="color:#337ab7">Category:</h8>
+									<h6 style="margin-top:0px; color:#2E64FE "><%= product.category.product_category %></h4>
+								</div>
+					
+								<div class="card-footer bg-transparent border-primary">
+									<p class="card-text"><%= product.description %></p>
+								</div>
+							</div>	
+						</div></br>
+					</div>		
+				<% end %>
+			</div>	
+		</div>
+	</div>
+<% end %>
 
 
