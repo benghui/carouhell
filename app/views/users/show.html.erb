@@ -5,7 +5,22 @@
 
 	<h4> Products by <%= @user.username %></h4> </br>
 
+	<div class = "row">
+		<div class = "col-sm-6">
+			<% @listedproducts.each do |product| %>
+				<% if current_user.id == product.seller.id %>
+					<% @offers.each do |off| %>
+						<% if off.approve == false && product.id == off.product_id %>
+							Offer from: <%= off.user.username %></br>
+							<h6><%= off.product.product_name %></h6>
+							<button type="button" class="btn btn-primary"><%= link_to 'Approve', user_product_offer_path(user_id: current_user.id, product_id: off.product.id, buyer_id: off.user_id, offer_id: off.id), method: :patch, :style => 'color:#FFFFFF' %></button></br></br>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
 
+		</div>
+	</div>
 	<div class="row">
 
 		<% @listedproducts.each do |product| %>
