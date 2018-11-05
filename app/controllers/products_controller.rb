@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
     @product.seller = current_user
 
 
-    @product.save
+    foobar = @product.save
     redirect_to user_product_path(user_id: current_user.id, id: @product.id)
   end
 
@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
   #   # @product.update_attributes(buyer_id: params[:user_id])
 
   #   redirect_to user_product_path(user_id: current_user.id, id: @product.id)
-    
+
   # end
 
   def destroy
