@@ -20,6 +20,11 @@
 		</p>
 
 		<p>
+			<%= form.label :image_url, "Upload Image" %><br>
+			<%= form.file_field :image_url %>
+ 		</p>
+
+		<p>
 			<%= form.label "Category" %><br>
 			<%= form.collection_select :category_id, @categories, :id, :product_category, prompt: true%>
 		</p>
