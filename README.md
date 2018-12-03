@@ -17,6 +17,21 @@
 - Bootstrap gem for front-end styling
 - Action cable for real time peer-to-peer chat
 
-## Wireframes and ERD
+
+## Entity Relationship Diagram
+![carouhell 2](https://user-images.githubusercontent.com/8159689/49354544-6b78b900-f6fe-11e8-94ba-57ef2748b427.png)
 
 
+## Wireframes
+
+### Landing page
+![carouhell - homepage](https://user-images.githubusercontent.com/8159689/49354561-7af80200-f6fe-11e8-8ddf-de936928a6ed.jpeg)
+
+### User signed in
+![carouhell - signed in](https://user-images.githubusercontent.com/8159689/49354562-7af80200-f6fe-11e8-811c-9f76521da93f.jpeg)
+
+### Product details
+![carouhell - details](https://user-images.githubusercontent.com/8159689/49354560-7af80200-f6fe-11e8-9c3e-36d4602b1a98.jpeg)
+
+### User page
+![carouhell - user](https://user-images.githubusercontent.com/8159689/49354563-7b909880-f6fe-11e8-97b1-5aceb4c19ef3.jpeg)
